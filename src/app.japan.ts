@@ -1,16 +1,14 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 @Injectable()
-export class AppService {
+export class AppJapan {
   constructor(
     @Inject('APP_NAME')
     private readonly name: string,
+    @Inject('MESSAGE')
+    private readonly message: string,
   ) {}
   getHello(): string {
-    return `Hello World! from ${this.name}`;
-  }
-
-  askName(): string {
-    return 'what is your name?';
+    return `こんにちは世界 from ${this.name}, ${this.message}`;
   }
 }

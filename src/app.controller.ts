@@ -11,12 +11,12 @@ export class AppController {
   }
 
   @Get('/name')
-  askForName(): string{
+  askForName(): string {
     return this.appService.askName();
   }
 
   @Get('/bye')
   getBye(): string {
-    return "Bye";
+    return 'Bye';
   }
 }

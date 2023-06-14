@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Event } from './events/event.entity';
 import { EventsModule } from './events/events.module';
+import { AppJapan } from './app.japan';
+import { AppDummy } from './app.dummy';
 
 @Module({
   imports: [
@@ -23,8 +25,19 @@ import { EventsModule } from './events/events.module';
   providers: [
     {
       provide: AppService,
-      useClass: AppService,
+      // useClass: AppService,
+      useClass: AppJapan,
     },
+    {
+      provide: 'APP_NAME',
+      useValue: 'Nest Events Backend',
+    },
+    {
+      provide: 'MESSAGE',
+      inject: [AppDummy],
+      useFactory: (app) => `${app.dummy()} Factory!`,
+    },
+    AppDummy,
   ],
 })
 export class AppModule {}
